@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
         <title>Gite de Bretagne</title>
 
         <link rel="stylesheet" href="{{ URL::asset('boostrap/css/bootstrap.min.css') }}" />
@@ -13,6 +14,20 @@
         <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}" />
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 
+        <link rel="stylesheet" href="{{ URL::asset('js/calendar/availability-calendar.css') }}" />
+        <script type="text/javascript" src="{{ asset('js/calendar/availability-calendar.js') }}"></script>
+
+        <link rel="stylesheet" href="{{ URL::asset('jqueryui/jquery-ui.min.css') }}" />
+        <script type="text/javascript" src="{{ asset('jqueryui/jquery-ui.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('jqueryui/datepicker-fr.js') }}"></script>
+
+        <script type="text/javascript">
+            /*On place le token dans la balise header de chaque requete, stocké dans une meta ci dessus*/
+            $.ajaxSetup({
+              headers: { 'X-CSRF-Token' : $('meta[name=csrf-token]').attr('content') }
+            });
+        </script>
+   
     </head>
     <body>
 
@@ -38,6 +53,9 @@
                          </li>
                          <li class="active">
                              <a href="{{URL::route('tarifs')}}">Tarifs</a>
+                         </li>
+                         <li class="active">
+                             <a href="{{URL::route('disponibilite')}}">Disponibilités</a>
                          </li>
                         <li class="active">
                              <a href="{{URL::route('contact')}}">Contact</a>
