@@ -43,7 +43,8 @@
             dateFin: $("input#datefin").val()
           },
           success : function(data){  
-            if(data.success){
+
+            if(data.success != false){
               $('#listOfReservations').html(data);
               $('#popAddDate').modal('hide');
             }
